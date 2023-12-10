@@ -20,8 +20,8 @@ lint:
 .PHONY: persist
 persist: SHELL := /bin/bash
 persist:
-	git config --global user.name "re-taro-bot[bot]" &&\
-	git config --global user.email $${MAIL_ADDRESS} &&\
+	git config --global user.name "GitHub Actions" &&\
+	git config --global user.email "actions@github.com" &&\
 	git add -A &&\
 	if [ "$(git log -1 --pretty=%B)" = "chore: Update generated files" ]; then \
 		git commit --amend --no-edit; \

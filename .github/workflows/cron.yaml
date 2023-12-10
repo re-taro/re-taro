@@ -21,6 +21,4 @@ jobs:
         run: make generate
       - name: Commit changes
         continue-on-error: true
-        run: |
-          export MAIL_ADDRESS="${{ secrets.MAIL_ADDRESS }}"
-          make persist
+        run: make persist
