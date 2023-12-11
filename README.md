@@ -10,8 +10,8 @@ Need more information? - [re-taro.dev](https://re-taro.dev).
 ## My top languages
 
 ```
-TypeScript          [====================    ] 83% (6h 11m)
-TOML                [===                     ] 13% (0h 56m)
+TypeScript          [===================     ] 80% (5h 13m)
+TOML                [===                     ] 14% (0h 56m)
 Makefile            [=                       ] 3% (0h 12m)
 JavaScript          [                        ] 1% (0h 4m)
 Git Config          [                        ] 1% (0h 3m)
@@ -33,4 +33,4 @@ TSConfig            [                        ] 0% (0h 0m)
 
 <br />
 
-_Updated 2023-12-11, 11:03_
+_Updated 2023-12-11, 12:03_
