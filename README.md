@@ -10,8 +10,7 @@ Need more information? - [re-taro.dev](https://re-taro.dev).
 ## My top languages
 
 ```
-Assembly            [========================] 99% (0h 4m)
-TypeScript          [                        ] 1% (0h 0m)
+TypeScript          [========================] 100% (0h 0m)
 ```
 
 
@@ -28,4 +27,4 @@ TypeScript          [                        ] 1% (0h 0m)
 
 <br />
 
-_Updated 2023-12-20, 11:02_
+_Updated 2023-12-20, 12:03_
