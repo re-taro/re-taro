@@ -10,8 +10,8 @@ Need more information? - [re-taro.dev](https://re-taro.dev).
 ## My top languages
 
 ```
-TypeScript          [================        ] 67% (0h 22m)
-JavaScript          [========                ] 33% (0h 10m)
+TypeScript          [======================= ] 94% (3h 0m)
+JavaScript          [=                       ] 6% (0h 12m)
 ```
 
 
@@ -28,4 +28,4 @@ JavaScript          [========                ] 33% (0h 10m)
 
 <br />
 
-_Updated 2023-12-24, 11:02_
+_Updated 2023-12-24, 12:03_
