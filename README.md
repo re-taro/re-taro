@@ -10,9 +10,9 @@ Need more information? - [re-taro.dev](https://re-taro.dev).
 ## My top languages
 
 ```
-TypeScript          [============            ] 52% (7h 10m)
-Rust                [==========              ] 41% (5h 36m)
-JavaScript          [=                       ] 5% (0h 42m)
+Rust                [=============           ] 56% (9h 42m)
+TypeScript          [=========               ] 39% (6h 48m)
+JavaScript          [=                       ] 3% (0h 31m)
 Makefile            [                        ] 1% (0h 9m)
 TOML                [                        ] 0% (0h 1m)
 Text                [                        ] 0% (0h 1m)
@@ -33,4 +33,4 @@ Git                 [                        ] 0% (0h 0m)
 
 <br />
 
-_Updated 2023-12-30, 11:02_
+_Updated 2023-12-30, 12:03_
