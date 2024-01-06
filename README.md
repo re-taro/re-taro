@@ -10,14 +10,14 @@ Need more information? - [re-taro.dev](https://re-taro.dev).
 ## My top languages
 
 ```
-Rust                [============            ] 48% (5h 40m)
-TypeScript          [========                ] 33% (3h 55m)
-JavaScript          [==                      ] 10% (1h 12m)
-Nix                 [=                       ] 5% (0h 35m)
+Rust                [===========             ] 45% (5h 57m)
+TypeScript          [========                ] 33% (4h 21m)
+JavaScript          [===                     ] 11% (1h 26m)
+Nix                 [=                       ] 4% (0h 35m)
+HTML                [=                       ] 4% (0h 33m)
 TSConfig            [                        ] 1% (0h 10m)
-HTML                [                        ] 1% (0h 6m)
+Makefile            [                        ] 1% (0h 5m)
 Git Config          [                        ] 1% (0h 4m)
-Makefile            [                        ] 0% (0h 2m)
 Apache Config       [                        ] 0% (0h 0m)
 Docker              [                        ] 0% (0h 0m)
 CSS                 [                        ] 0% (0h 0m)
@@ -37,4 +37,4 @@ CSS                 [                        ] 0% (0h 0m)
 
 <br />
 
-_Updated 2024-01-06, 11:02_
+_Updated 2024-01-06, 12:03_
