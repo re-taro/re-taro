@@ -10,8 +10,8 @@ Need more information? - [re-taro.dev](https://re-taro.dev).
 ## My top languages
 
 ```
-TypeScript          [=============           ] 54% (11h 7m)
-Rust                [==========              ] 41% (8h 27m)
+TypeScript          [================        ] 67% (15h 10m)
+Rust                [=======                 ] 29% (6h 32m)
 JavaScript          [                        ] 2% (0h 26m)
 HTML                [                        ] 1% (0h 13m)
 Python              [                        ] 1% (0h 12m)
@@ -36,4 +36,4 @@ CSS                 [                        ] 0% (0h 0m)
 
 <br />
 
-_Updated 2024-01-14, 11:02_
+_Updated 2024-01-14, 12:02_
