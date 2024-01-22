@@ -10,11 +10,11 @@ Need more information? - [re-taro.dev](https://re-taro.dev).
 ## My top languages
 
 ```
-TypeScript          [====================    ] 84% (13h 12m)
-JavaScript          [==                      ] 7% (1h 7m)
-XML                 [=                       ] 3% (0h 24m)
-TSConfig            [                        ] 2% (0h 15m)
-C++                 [                        ] 2% (0h 14m)
+TypeScript          [====================    ] 84% (14h 16m)
+JavaScript          [==                      ] 8% (1h 19m)
+XML                 [                        ] 2% (0h 24m)
+TSConfig            [                        ] 2% (0h 16m)
+C++                 [                        ] 1% (0h 14m)
 CSS                 [                        ] 1% (0h 11m)
 Diff                [                        ] 1% (0h 10m)
 INI                 [                        ] 1% (0h 6m)
@@ -38,4 +38,4 @@ Nix                 [                        ] 0% (0h 0m)
 
 <br />
 
-_Updated 2024-01-22, 11:03_
+_Updated 2024-01-22, 12:03_
