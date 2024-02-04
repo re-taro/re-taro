@@ -10,13 +10,9 @@ Need more information? - [re-taro.dev](https://re-taro.dev).
 ## My top languages
 
 ```
-Text                [==============          ] 60% (2h 21m)
-TypeScript          [=====                   ] 21% (0h 48m)
-Docker              [===                     ] 14% (0h 32m)
-Assembly            [=                       ] 4% (0h 10m)
-JavaScript          [                        ] 1% (0h 2m)
-Git Config          [                        ] 0% (0h 0m)
-TSConfig            [                        ] 0% (0h 0m)
+C++                 [===============         ] 64% (0h 19m)
+Assembly            [========                ] 34% (0h 10m)
+Docker              [                        ] 1% (0h 0m)
 ```
 
 
@@ -33,4 +29,4 @@ TSConfig            [                        ] 0% (0h 0m)
 
 <br />
 
-_Updated 2024-02-04, 11:02_
+_Updated 2024-02-04, 12:03_
