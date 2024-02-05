@@ -10,9 +10,7 @@ Need more information? - [re-taro.dev](https://re-taro.dev).
 ## My top languages
 
 ```
-C++                 [===============         ] 64% (0h 19m)
-Assembly            [========                ] 34% (0h 10m)
-Docker              [                        ] 1% (0h 0m)
+C++                 [========================] 100% (0h 19m)
 ```
 
 
@@ -29,4 +27,4 @@ Docker              [                        ] 1% (0h 0m)
 
 <br />
 
-_Updated 2024-02-05, 11:02_
+_Updated 2024-02-05, 12:03_
