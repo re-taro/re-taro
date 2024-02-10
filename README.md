@@ -10,7 +10,8 @@ Need more information? - [re-taro.dev](https://re-taro.dev).
 ## My top languages
 
 ```
-C++                 [========================] 100% (0h 19m)
+TypeScript          [======================= ] 95% (6h 33m)
+C++                 [=                       ] 5% (0h 19m)
 ```
 
 
@@ -27,4 +28,4 @@ C++                 [========================] 100% (0h 19m)
 
 <br />
 
-_Updated 2024-02-10, 11:02_
+_Updated 2024-02-10, 12:03_
