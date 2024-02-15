@@ -1,45 +1,45 @@
 export type UserActivity = UserEvent[];
 
 export type UserEvent =
-	| UserEventGeneric<"CommitCommentEvent"> & {
+	| UserEventGeneric<'CommitCommentEvent'> & {
 		payload: {
-			action: "created";
+			action: 'created';
 			comment: GithubComment;
 		};
 	}
-	| UserEventGeneric<"CreateEvent"> & {
+	| UserEventGeneric<'CreateEvent'> & {
 		payload: {
 			ref: string;
-			ref_type: "branch" | "tag";
+			ref_type: 'branch' | 'tag';
 			master_branch: string;
 			description: string;
 		};
 	}
-	| UserEventGeneric<"DeleteEvent"> & {
+	| UserEventGeneric<'DeleteEvent'> & {
 		payload: {
 			ref: string;
-			ref_type: "branch" | "tag";
+			ref_type: 'branch' | 'tag';
 		};
 	}
-	| UserEventGeneric<"ForkEvent"> & {
+	| UserEventGeneric<'ForkEvent'> & {
 		payload: {
 			forkee: GithubRepository;
 		};
 	}
-	| UserEventGeneric<"GollumEvent"> & {
+	| UserEventGeneric<'GollumEvent'> & {
 		payload: {
 			pages: {
 				page_name: string;
 				title: string;
-				action: "created" | "edited";
+				action: 'created' | 'edited';
 				sha: string;
 				html_url: string;
 			}[];
 		};
 	}
-	| UserEventGeneric<"IssueCommentEvent"> & {
+	| UserEventGeneric<'IssueCommentEvent'> & {
 		payload: {
-			action: "created" | "edited" | "deleted";
+			action: 'created' | 'edited' | 'deleted';
 			issue: GithubIssue;
 			comment: GithubComment;
 			changes?: {
@@ -49,17 +49,17 @@ export type UserEvent =
 			};
 		};
 	}
-	| UserEventGeneric<"IssuesEvent"> & {
+	| UserEventGeneric<'IssuesEvent'> & {
 		payload: {
 			action:
-				| "opened"
-				| "edited"
-				| "closed"
-				| "reopened"
-				| "assigned"
-				| "unassigned"
-				| "labeled"
-				| "unlabeled";
+				| 'opened'
+				| 'edited'
+				| 'closed'
+				| 'reopened'
+				| 'assigned'
+				| 'unassigned'
+				| 'labeled'
+				| 'unlabeled';
 			issue: GithubIssue;
 			changes?: {
 				title: {
@@ -69,16 +69,16 @@ export type UserEvent =
 					from: string;
 				};
 			};
-			assignee?: GithubUserGeneric<"User">;
+			assignee?: GithubUserGeneric<'User'>;
 			label?: {
 				name: string;
 			};
 		};
 	}
-	| UserEventGeneric<"MemberEvent"> & {
+	| UserEventGeneric<'MemberEvent'> & {
 		payload: {
-			action: "added" | "deleted";
-			member: GithubUserGeneric<"User">;
+			action: 'added' | 'deleted';
+			member: GithubUserGeneric<'User'>;
 			changes?: {
 				old_permission: {
 					from: string;
@@ -86,23 +86,23 @@ export type UserEvent =
 			};
 		};
 	}
-	| UserEventGeneric<"PublicEvent"> & {
+	| UserEventGeneric<'PublicEvent'> & {
 		payload: Record<string, string>;
 	}
-	| UserEventGeneric<"PullRequestEvent"> & {
+	| UserEventGeneric<'PullRequestEvent'> & {
 		payload: {
 			action:
-				| "opened"
-				| "edited"
-				| "closed"
-				| "reopened"
-				| "assigned"
-				| "unassigned"
-				| "review_requested"
-				| "review_request_removed"
-				| "labeled"
-				| "unlabeled"
-				| "synchronize";
+				| 'opened'
+				| 'edited'
+				| 'closed'
+				| 'reopened'
+				| 'assigned'
+				| 'unassigned'
+				| 'review_requested'
+				| 'review_request_removed'
+				| 'labeled'
+				| 'unlabeled'
+				| 'synchronize';
 			number: number;
 			changes?: {
 				title: {
@@ -116,16 +116,16 @@ export type UserEvent =
 			reason?: string;
 		};
 	}
-	| UserEventGeneric<"PullRequestReviewEvent"> & {
+	| UserEventGeneric<'PullRequestReviewEvent'> & {
 		payload: {
-			action: "created";
+			action: 'created';
 			pull_request: GithubPullRequest;
 			review: GithubReview;
 		};
 	}
-	| UserEventGeneric<"PullRequestReviewCommentEvent"> & {
+	| UserEventGeneric<'PullRequestReviewCommentEvent'> & {
 		payload: {
-			action: "created" | "edited" | "deleted";
+			action: 'created' | 'edited' | 'deleted';
 			changes?: {
 				body: {
 					from: string;
@@ -135,14 +135,14 @@ export type UserEvent =
 			comment: GithubComment;
 		};
 	}
-	| UserEventGeneric<"PullRequestReviewThreadEvent"> & {
+	| UserEventGeneric<'PullRequestReviewThreadEvent'> & {
 		payload: {
-			action: "resolved" | "unresolved";
+			action: 'resolved' | 'unresolved';
 			pull_request: GithubPullRequest;
 			thread: unknown;
 		};
 	}
-	| UserEventGeneric<"PushEvent"> & {
+	| UserEventGeneric<'PushEvent'> & {
 		payload: {
 			push_id: number;
 			size: number;
@@ -153,9 +153,9 @@ export type UserEvent =
 			commits: GithubCommit[];
 		};
 	}
-	| UserEventGeneric<"ReleaseEvent"> & {
+	| UserEventGeneric<'ReleaseEvent'> & {
 		payload: {
-			action: "published" | "edited";
+			action: 'published' | 'edited';
 			changes?: {
 				body: {
 					from: string;
@@ -164,9 +164,9 @@ export type UserEvent =
 			release: GithubRelease;
 		};
 	}
-	| UserEventGeneric<"SponsorshipEvent"> & {
+	| UserEventGeneric<'SponsorshipEvent'> & {
 		payload: {
-			action: "created";
+			action: 'created';
 			effective_date: string;
 			changes?: {
 				tier: {
@@ -178,10 +178,10 @@ export type UserEvent =
 			};
 		};
 	}
-	| UserEventGeneric<"WatchEvent"> & {
+	| UserEventGeneric<'WatchEvent'> & {
 		// Confusingly named, this denotes a 'star' event
 		payload: {
-			action: "started";
+			action: 'started';
 		};
 	};
 
@@ -218,23 +218,23 @@ interface UserEventGeneric<T extends UserEventType> {
 }
 
 type UserEventType =
-	| "CommitCommentEvent"
-	| "CreateEvent"
-	| "DeleteEvent"
-	| "ForkEvent"
-	| "GollumEvent"
-	| "IssueCommentEvent"
-	| "IssuesEvent"
-	| "MemberEvent"
-	| "PublicEvent"
-	| "PullRequestEvent"
-	| "PullRequestReviewEvent"
-	| "PullRequestReviewCommentEvent"
-	| "PullRequestReviewThreadEvent"
-	| "PushEvent"
-	| "ReleaseEvent"
-	| "SponsorshipEvent"
-	| "WatchEvent";
+	| 'CommitCommentEvent'
+	| 'CreateEvent'
+	| 'DeleteEvent'
+	| 'ForkEvent'
+	| 'GollumEvent'
+	| 'IssueCommentEvent'
+	| 'IssuesEvent'
+	| 'MemberEvent'
+	| 'PublicEvent'
+	| 'PullRequestEvent'
+	| 'PullRequestReviewEvent'
+	| 'PullRequestReviewCommentEvent'
+	| 'PullRequestReviewThreadEvent'
+	| 'PushEvent'
+	| 'ReleaseEvent'
+	| 'SponsorshipEvent'
+	| 'WatchEvent';
 
 interface GithubRelease {
 	url: string;
@@ -254,7 +254,7 @@ interface GithubRelease {
 	prerelease: boolean;
 	created_at: string;
 	published_at: string;
-	author: GithubUserGeneric<"User">;
+	author: GithubUserGeneric<'User'>;
 	assets: {
 		url: string;
 		browser_download_url: string;
@@ -262,13 +262,13 @@ interface GithubRelease {
 		node_id: string;
 		name: string;
 		label: string;
-		state: "uploaded" | "deleted";
+		state: 'uploaded' | 'deleted';
 		content_type: string;
 		size: number;
 		download_count: number;
 		created_at: string;
 		updated_at: string;
-		uploader: GithubUserGeneric<"User">;
+		uploader: GithubUserGeneric<'User'>;
 	}[];
 }
 
@@ -287,9 +287,9 @@ interface GithubCommit {
 interface GithubReview {
 	id: number;
 	node_id: string;
-	user: GithubUserGeneric<"User">;
+	user: GithubUserGeneric<'User'>;
 	body: string;
-	state: "PENDING" | "COMMENTED" | "APPROVED" | "CHANGES_REQUESTED";
+	state: 'PENDING' | 'COMMENTED' | 'APPROVED' | 'CHANGES_REQUESTED';
 	html_url: string;
 	pull_request_url: string;
 	_links: {
@@ -303,14 +303,14 @@ interface GithubReview {
 	submitted_at: string;
 	commit_id: string;
 	author_association:
-		| "OWNER"
-		| "COLLABORATOR"
-		| "CONTRIBUTOR"
-		| "FIRST_TIMER"
-		| "FIRST_TIME_CONTRIBUTOR"
-		| "MANNEQUIN"
-		| "MEMBER"
-		| "NONE";
+		| 'OWNER'
+		| 'COLLABORATOR'
+		| 'CONTRIBUTOR'
+		| 'FIRST_TIMER'
+		| 'FIRST_TIME_CONTRIBUTOR'
+		| 'MANNEQUIN'
+		| 'MEMBER'
+		| 'NONE';
 }
 
 interface GithubPullRequest {
@@ -327,10 +327,10 @@ interface GithubPullRequest {
 	comments_url: string;
 	statuses_url: string;
 	number: number;
-	state: "open" | "closed";
+	state: 'open' | 'closed';
 	locked: boolean;
 	title: string;
-	user: GithubUserGeneric<"User">;
+	user: GithubUserGeneric<'User'>;
 	body: string;
 	labels: {
 		id: number;
@@ -348,10 +348,10 @@ interface GithubPullRequest {
 		id: number;
 		node_id: string;
 		number: number;
-		state: "open" | "closed";
+		state: 'open' | 'closed';
 		title: string;
 		description: string;
-		creator: GithubUserGeneric<"User">;
+		creator: GithubUserGeneric<'User'>;
 		open_issues: number;
 		closed_issues: number;
 		created_at: string;
@@ -365,9 +365,9 @@ interface GithubPullRequest {
 	closed_at: string;
 	merged_at: string;
 	merge_commit_sha: string;
-	assignee: GithubUserGeneric<"User">;
-	assignees: GithubUserGeneric<"User">[];
-	requested_reviewers: GithubUserGeneric<"User">[];
+	assignee: GithubUserGeneric<'User'>;
+	assignees: GithubUserGeneric<'User'>[];
+	requested_reviewers: GithubUserGeneric<'User'>[];
 	requested_teams: {
 		id: number;
 		node_id: string;
@@ -375,8 +375,8 @@ interface GithubPullRequest {
 		name: string;
 		slug: string;
 		description: string;
-		privacy: "secret" | "closed";
-		permission: "pull" | "push" | "admin";
+		privacy: 'secret' | 'closed';
+		permission: 'pull' | 'push' | 'admin';
 		members_url: string;
 		repositories_url: string;
 	}[];
@@ -384,14 +384,14 @@ interface GithubPullRequest {
 		label: string;
 		ref: string;
 		sha: string;
-		user: GithubUserGeneric<"User">;
+		user: GithubUserGeneric<'User'>;
 		repo: GithubRepository;
 	};
 	base: {
 		label: string;
 		ref: string;
 		sha: string;
-		user: GithubUserGeneric<"User">;
+		user: GithubUserGeneric<'User'>;
 		repo: GithubRepository;
 	};
 	_links: {
@@ -434,10 +434,10 @@ interface GithubIssue {
 	events_url: string;
 	html_url: string;
 	number: number;
-	state: "open" | "closed";
+	state: 'open' | 'closed';
 	title: string;
 	body: string;
-	actor: GithubUserGeneric<"User" | "Organization">;
+	actor: GithubUserGeneric<'User' | 'Organization'>;
 	event: string;
 	commit_id: string;
 	commit_url: string;
@@ -450,7 +450,7 @@ interface GithubComment {
 	url: string;
 	html_url: string;
 	body: string;
-	user: GithubUserGeneric<"User" | "Organization">;
+	user: GithubUserGeneric<'User' | 'Organization'>;
 	created_at: string;
 	updated_at: string;
 	issue_url: string;
@@ -478,7 +478,7 @@ interface GithubUserGeneric<T extends GithubUserType> {
 	site_admin: boolean;
 }
 
-type GithubUserType = "User" | "Organization";
+type GithubUserType = 'User' | 'Organization';
 
 export interface BlogPost extends SanityObject {
 	title: string;
@@ -493,37 +493,37 @@ export interface BlogPost extends SanityObject {
 	date: string;
 	body: PTBlock[];
 	author: PTAuthor;
-	_type: "post";
+	_type: 'post';
 }
 
-interface PTBlock extends Omit<SanityObject, "_rev" | "_id"> {
-	_type: "block";
+interface PTBlock extends Omit<SanityObject, '_rev' | '_id'> {
+	_type: 'block';
 	_key: string;
 	style: string;
 	markDefs: Record<string, string>[];
 	children: Record<string, string>[];
 }
 
-interface PTAuthor extends Omit<SanityObject, "_rev"> {
-	_type: "author";
-	_id: "me";
+interface PTAuthor extends Omit<SanityObject, '_rev'> {
+	_type: 'author';
+	_id: 'me';
 	slug: null;
 	name: string;
 	image: {
 		asset: {
-			_type: "reference";
+			_type: 'reference';
 			_ref: string;
 		};
-		_type: "image";
+		_type: 'image';
 	};
 }
 
-interface PostTag extends Omit<SanityObject, "_type" | "_rev"> {
+interface PostTag extends Omit<SanityObject, '_type' | '_rev'> {
 	title: string;
 	slug: SanitySlug;
 }
 
-interface SanitySlug extends Omit<SanityObject, "_id" | "_rev"> {
+interface SanitySlug extends Omit<SanityObject, '_id' | '_rev'> {
 	current: string;
 }
 
@@ -539,7 +539,7 @@ export interface GithubRepository {
 	name: string;
 	full_name: string;
 	private: boolean;
-	owner: GithubUserGeneric<"User" | "Organization">;
+	owner: GithubUserGeneric<'User' | 'Organization'>;
 	html_url: string;
 	description?: string | null;
 	fork: boolean;

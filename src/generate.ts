@@ -1,18 +1,52 @@
-import { fetchWakatimeStats, repeat, replaceString } from "./utils.ts";
-import config from "./config.ts";
-import type { WakatimeStats } from "./types.ts";
+import {
+	fetchUserActivity,
+	fetchWakatimeStats,
+	parseDateTime,
+	parseUserEvent,
+	repeat,
+	replaceString,
+} from './utils.ts';
+import config from './config.ts';
+import { load as configEnv } from 'std/dotenv';
+import type {
+	BlogPost,
+	GithubRepository,
+	UserActivity,
+	WakatimeStats,
+} from './types.ts';
 
 export default class Generate {
-	wakatimeStats!: WakatimeStats["data"];
+	env!: Record<string, string>;
+	userRepos!: GithubRepository[];
+	userActivity!: UserActivity;
+	wakatimeStats!: WakatimeStats['data'];
 	placeholders!: Map<string, () => string>;
+	blogPosts!: BlogPost[];
 
 	async init() {
-		this.wakatimeStats = await fetchWakatimeStats();
+		this.env = await configEnv();
+
+		if (!(this.env.GITHUB_TOKEN || Deno.env.get('GITHUB_TOKEN'))) {
+			throw new Error('GITHUB_TOKEN not set in .env');
+		}
+
+		const GITHUB_TOKEN = Deno.env.get('GITHUB_TOKEN') || this.env.GITHUB_TOKEN;
+		const WAKATIME_API_KEY = Deno.env.get('WAKATIME_API_KEY') ||
+			this.env.WAKATIME_API_KEY;
+
+		const fetchedData = await Promise.all([
+			fetchUserActivity(GITHUB_TOKEN),
+			fetchWakatimeStats(WAKATIME_API_KEY),
+		]);
+
+		this.userActivity = fetchedData[0];
+		this.wakatimeStats = fetchedData[1];
 
 		this.placeholders = new Map([
-			["languages_graph", this.parseLanguagesGraph],
-			["music_activity", this.parseMusicActivity],
-			["updated_at", this.updatedMessage],
+			['user_activity', this.parseUserActivity],
+			['languages_graph', this.parseLanguagesGraph],
+			['music_activity', this.parseMusicActivity],
+			['updated_at', this.updatedMessage],
 		]);
 	}
 
@@ -22,16 +56,16 @@ export default class Generate {
 				template = replaceString(template, key, fn.bind(this)());
 			}
 
-			template = replaceString(template, "title", config.content.title);
+			template = replaceString(template, 'title', config.content.title);
 			template = replaceString(
 				template,
-				"description",
+				'description',
 				config.content.description,
 			);
 
 			return template;
 		} catch (e) {
-			console.error("[Generate] Error filling template:", e);
+			console.error('[Generate] Error filling template:', e);
 			return undefined;
 		}
 	}
@@ -47,6 +81,91 @@ export default class Generate {
 </a>`;
 	}
 
+	private parseUserActivity() {
+		const lines = [] as string[];
+
+		// First, sort the events by date - should be broken down into individual days
+		const sortedEvents: Record<string, UserActivity> = {};
+
+		this.userActivity.forEach((event) => {
+			const { created_at, repo } = event;
+			if (repo?.name && repo.name.indexOf('re-taro/re-taro') !== -1) {
+				return;
+			}
+
+			const dateObject = parseDateTime(created_at, 'yyyy-MM-ddTHH:mm:ssZ');
+			const dateString = `${
+				dateObject.toLocaleString('default', {
+					month: 'long',
+				})
+			} ${dateObject.getDate()}`;
+
+			if (!sortedEvents[dateString]) {
+				sortedEvents[dateString] = [];
+			}
+
+			if (event.type === 'PushEvent') {
+				const { commits } = event.payload;
+
+				const messagesToAdd = commits.map((commit) => commit.message);
+
+				sortedEvents[dateString] = sortedEvents[dateString].filter((event) => {
+					if (event.type !== 'PushEvent') {
+						return true;
+					}
+
+					const { commits } = event.payload;
+
+					if (commits.length > 1) {
+						return true;
+					}
+
+					return !commits.some((commit) =>
+						messagesToAdd.includes(commit.message)
+					);
+				});
+			}
+
+			sortedEvents[dateString].push(event);
+		});
+
+		// Then, parse each day's events and add them to the lines array
+		// Before the first event, add a header for the day
+		Object.keys(sortedEvents).forEach((date, index) => {
+			if (index >= config.limits.userActivityMaxDays) {
+				return;
+			}
+
+			const events = sortedEvents[date];
+
+			lines.push(`\n#### ${date}`);
+
+			// Maximum events per day, after which an "and X more" message is added
+			events.forEach((event, index) => {
+				if (index === config.limits.userActivityMaxEventsPerDay) {
+					lines.push(`* ...and ${events.length - index} more`);
+				}
+				if (index >= config.limits.userActivityMaxEventsPerDay) {
+					return;
+				}
+
+				const message = parseUserEvent(event);
+
+				if (message) {
+					lines.push(`* ${
+						message
+							.replace(/([*\-_])(?=[^`]*(?:`[^`]*`[^`]*)*$)/g, '\\$&')
+							.replace(/[\n\r]/g, ' ')
+					}`);
+				}
+			});
+		});
+
+		console.log('[Generate] Parsed recent activity:', lines);
+
+		return lines.join('\n');
+	}
+
 	private parseLanguagesGraph() {
 		const languages = this.wakatimeStats?.languages.filter((lang) => {
 			return !config.languagesIgnore.includes(lang.name.toLowerCase());
@@ -54,9 +173,9 @@ export default class Generate {
 
 		if (!languages?.length) {
 			console.error(
-				"[Generate] No languages found for Wakatime languages graph",
+				'[Generate] No languages found for Wakatime languages graph',
 			);
-			return "";
+			return '';
 		}
 
 		const sortedLanguages = languages.sort((a, b) => {
@@ -86,28 +205,28 @@ export default class Generate {
 			const scale = 24;
 			const langName = name.length > 20 ? `${name.slice(0, 20)}...` : name;
 			// Bar should account for scale
-			const bar = `[${repeat("=", Math.round((percent / 100) * scale))}${
-				repeat(" ", scale - Math.round((percent / 100) * scale))
+			const bar = `[${repeat('=', Math.round((percent / 100) * scale))}${
+				repeat(' ', scale - Math.round((percent / 100) * scale))
 			}]`;
 
-			console.log("[Generate] Language graph item:", langName, percent);
+			console.log('[Generate] Language graph item:', langName, percent);
 
 			lines.push(
 				`${langName}${
-					repeat(" ", 20 - langName.length)
+					repeat(' ', 20 - langName.length)
 				}${bar} ${percent}% (${hours}h ${minutes}m)`,
 			);
 		});
 
-		return lines.join("\n");
+		return lines.join('\n');
 	}
 
 	private updatedMessage() {
-		const localeString = new Date().toLocaleString("en-CA", {
-			dateStyle: "short",
-			timeStyle: "short",
+		const localeString = new Date().toLocaleString('ja-JP', {
+			dateStyle: 'short',
+			timeStyle: 'short',
 			hour12: false,
-			timeZone: "America/Halifax",
+			timeZone: 'Japan/Tokyo',
 		});
 
 		return `_Updated ${localeString}_`;

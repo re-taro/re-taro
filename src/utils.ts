@@ -1,11 +1,12 @@
-import config from "./config.ts";
-export { parse as parseDateTime } from "std/datetime";
+import config from './config.ts';
+export { parse as parseDateTime } from 'std/datetime';
+import { encodeBase64 as encode } from 'std/encoding/base64';
 import type {
 	GithubRepository,
 	UserActivity,
 	UserEvent,
 	WakatimeStats,
-} from "./types.ts";
+} from './types.ts';
 
 export const replaceString = (template: string, key: string, value: string) =>
 	template.replaceAll(`{{${key}}}`, value);
@@ -22,14 +23,14 @@ export const fetchUserRepos = async (token: string) => {
 		{
 			init: {
 				headers: {
-					"Authorization": `token ${token}`,
+					'Authorization': `token ${token}`,
 				},
 			},
 		},
 	);
 
 	if (!userRepos) {
-		throw new Error("Could not fetch user repos");
+		throw new Error('Could not fetch user repos');
 	}
 
 	return userRepos;
@@ -41,14 +42,14 @@ export const fetchUserActivity = async (token: string) => {
 		{
 			init: {
 				headers: {
-					"Authorization": `token ${token}`,
+					'Authorization': `token ${token}`,
 				},
 			},
 		},
 	);
 
 	if (!userActivity) {
-		throw new Error("Could not fetch user activity");
+		throw new Error('Could not fetch user activity');
 	}
 
 	return userActivity;
@@ -73,21 +74,28 @@ const attemptFetch = async <T>(
 				!jsonData || (jsonData as unknown as Record<string, string>)?.message ||
 				(jsonData as unknown as Record<string, string>)?.error
 			) {
-				throw new Error("Invalid fetch response");
+				throw new Error('Invalid fetch response');
 			}
 		} catch (e) {
-			console.error("[Fetch] Error fetching data:", e);
+			console.error('[Fetch] Error fetching data:', e);
 		}
 	}
 	return jsonData;
 };
 
-export const fetchWakatimeStats = async () => {
+export const fetchWakatimeStats = async (token: string) => {
 	const res = await attemptFetch<WakatimeStats>(
-		`${config.endpoints.wakatime}`,
+		`${config.endpoints.wakatime}/${config.limits.wakatimeTimeframe}`,
+		{
+			init: {
+				headers: {
+					'Authorization': `Bearer ${encode(token)}`,
+				},
+			},
+		},
 	);
 	if (!res?.data) {
-		throw new Error("Invalid response from Wakatime API");
+		throw new Error('Invalid response from Wakatime API');
 	}
 	return res.data;
 };
@@ -96,42 +104,42 @@ export const getMarkdownLineLength = (md: string) => {
 	return md
 		.replace(/\[[^\]]*\]\(.*?\)/g, (match: string) =>
 			match
-				.replace(/\(.*?\)/, "")
-				.replace(/[\[\]]/g, ""))
-		.replace(/`/g, "")
-		.replace(/[#*_]/g, "")
+				.replace(/\(.*?\)/, '')
+				.replace(/[\[\]]/g, ''))
+		.replace(/`/g, '')
+		.replace(/[#*_]/g, '')
 		.length;
 };
 
 export const parseUserEvent = (event: UserEvent) => {
 	const { type, payload, repo, public: isPublic } = event;
 	const repoUrl = `https://github.com/${
-		repo.url.replace("https://api.github.com/repos/", "")
+		repo.url.replace('https://api.github.com/repos/', '')
 	}`;
 
 	let message: string | undefined;
 
 	switch (type) {
-		case "PushEvent": {
+		case 'PushEvent': {
 			const commits = payload.commits.length;
 
 			if (!isPublic) {
-				message = `Pushed ${commits === 1 ? "a" : commits} commit${
-					commits === 1 ? "" : "s"
+				message = `Pushed ${commits === 1 ? 'a' : commits} commit${
+					commits === 1 ? '' : 's'
 				} to a private repository`;
 				break;
 			}
 
 			if (commits > 1) {
 				message = `Pushed ${commits} commits to branch \`${
-					payload.ref.replace("refs/heads/", "")
+					payload.ref.replace('refs/heads/', '')
 				}\` in [\`${repo.name}\`](${repoUrl})`;
 				break;
 			}
 
 			message =
 				`Pushed [a commit](${repoUrl}/commit/${payload.head}) to branch \`${
-					payload.ref.replace("refs/heads/", "")
+					payload.ref.replace('refs/heads/', '')
 				}\` in [\`${repo.name}\`](${repoUrl})`;
 
 			const firstCommit = payload.commits[0];
@@ -160,113 +168,113 @@ export const parseUserEvent = (event: UserEvent) => {
 			description && (message += `: ${description}`);
 			break;
 		}
-		case "CreateEvent":
+		case 'CreateEvent':
 			message = isPublic
 				? `Created ${payload.ref_type} \`${payload.ref}\` in [\`${repo.name}\`](https://github.com/${
-					repo.url.replace("https://api.github.com/repos/", "")
+					repo.url.replace('https://api.github.com/repos/', '')
 				})`
 				: `Created a ${payload.ref_type} in a private repository`;
 			break;
-		case "DeleteEvent":
+		case 'DeleteEvent':
 			message = isPublic
 				? `Deleted ${payload.ref_type} \`${payload.ref}\` in [\`${repo.name}\`](https://github.com/${
-					repo.url.replace("https://api.github.com/repos/", "")
+					repo.url.replace('https://api.github.com/repos/', '')
 				})`
 				: `Deleted a ${payload.ref_type} in a private repository`;
 			break;
-		case "IssuesEvent":
+		case 'IssuesEvent':
 			message = isPublic
 				? `Opened issue [#${payload.issue.number}](${payload.issue.html_url}) in [\`${repo.name}\`](https://github.com/${
-					repo.url.replace("https://api.github.com/repos/", "")
+					repo.url.replace('https://api.github.com/repos/', '')
 				})`
-				: "Opened an issue in a private repository";
+				: 'Opened an issue in a private repository';
 			break;
-		case "IssueCommentEvent": {
-			const isPR = payload.issue.html_url.indexOf("/pull/") !== -1;
+		case 'IssueCommentEvent': {
+			const isPR = payload.issue.html_url.indexOf('/pull/') !== -1;
 
 			if (isPR) {
 				message = isPublic
 					? `Commented on pull request [#${payload.issue.number}](${payload.issue.html_url}) in [\`${repo.name}\`](${repoUrl})`
-					: "Commented on a pull request in a private repository";
+					: 'Commented on a pull request in a private repository';
 				break;
 			}
 
 			message = isPublic
 				? `Commented on issue [#${payload.issue.number}](${payload.issue.html_url}) in [\`${repo.name}\`](${repoUrl})`
-				: "Commented on an issue in a private repository";
+				: 'Commented on an issue in a private repository';
 			break;
 		}
-		case "PullRequestEvent":
+		case 'PullRequestEvent':
 			message = isPublic
 				? `${payload.action.charAt(0).toUpperCase()}${
 					payload.action.slice(1)
 				} pull request [#${payload.number}](${payload.pull_request.html_url}) in [\`${repo.name}\`](https://github.com/${
-					repo.url.replace("https://api.github.com/repos/", "")
+					repo.url.replace('https://api.github.com/repos/', '')
 				})`
 				: `${payload.action.charAt(0).toUpperCase()}${
 					payload.action.slice(1)
 				} a pull request in a private repository`;
 			break;
-		case "PullRequestReviewEvent":
+		case 'PullRequestReviewEvent':
 			message = isPublic
 				? `Reviewed pull request [#${payload.pull_request.number}](${payload.pull_request.html_url}) in [\`${repo.name}\`](https://github.com/${
-					repo.url.replace("https://api.github.com/repos/", "")
+					repo.url.replace('https://api.github.com/repos/', '')
 				})`
-				: "Reviewed a pull request in a private repository";
+				: 'Reviewed a pull request in a private repository';
 			break;
-		case "PullRequestReviewCommentEvent":
+		case 'PullRequestReviewCommentEvent':
 			message = isPublic
 				? `Commented on pull request [#${payload.pull_request.number}](${payload.pull_request.html_url}) in [\`${repo.name}\`](https://github.com/${
-					repo.url.replace("https://api.github.com/repos/", "")
+					repo.url.replace('https://api.github.com/repos/', '')
 				})`
-				: "Commented on a pull request in a private repository";
+				: 'Commented on a pull request in a private repository';
 			break;
-		case "PullRequestReviewThreadEvent":
+		case 'PullRequestReviewThreadEvent':
 			message = isPublic
 				? `Commented on pull request [#${payload.pull_request.number}](${payload.pull_request.html_url}) in [\`${repo.name}\`](https://github.com/${
-					repo.url.replace("https://api.github.com/repos/", "")
+					repo.url.replace('https://api.github.com/repos/', '')
 				})`
-				: "Commented on a pull request thread in a private repository";
+				: 'Commented on a pull request thread in a private repository';
 			break;
-		case "WatchEvent":
+		case 'WatchEvent':
 			message = isPublic
 				? `Starred [\`${repo.name}\`](https://github.com/${
-					repo.url.replace("https://api.github.com/repos/", "")
+					repo.url.replace('https://api.github.com/repos/', '')
 				})`
-				: "Starred a private repository";
+				: 'Starred a private repository';
 			break;
-		case "ForkEvent":
+		case 'ForkEvent':
 			message = isPublic
 				? `Forked [\`${payload.forkee.name}\`](${payload.forkee.html_url})`
-				: "Forked a private repository";
+				: 'Forked a private repository';
 			break;
-		case "ReleaseEvent":
+		case 'ReleaseEvent':
 			message = isPublic
 				? `Created release "${payload.release.name}" in [\`${repo.name}\`](https://github.com/${
-					repo.url.replace("https://api.github.com/repos/", "")
+					repo.url.replace('https://api.github.com/repos/', '')
 				})`
-				: "Created a release in a private repository";
+				: 'Created a release in a private repository';
 			break;
-		case "PublicEvent":
+		case 'PublicEvent':
 			message = `Made [\`${repo.name}\`](https://github.com/${
-				repo.url.replace("https://api.github.com/repos/", "")
+				repo.url.replace('https://api.github.com/repos/', '')
 			}) public`;
 			break;
-		case "GollumEvent":
+		case 'GollumEvent':
 			message = isPublic
 				? `Updated wiki page${
-					` ${payload.pages[0].page_name} ` ?? ""
+					` ${payload.pages[0].page_name} ` ?? ''
 				}in [\`${repo.name}\`](https://github.com/${
-					repo.url.replace("https://api.github.com/repos/", "")
+					repo.url.replace('https://api.github.com/repos/', '')
 				})`
-				: "Updated a wiki page in a private repository";
+				: 'Updated a wiki page in a private repository';
 			break;
-		case "CommitCommentEvent":
+		case 'CommitCommentEvent':
 			message = isPublic
 				? `Commented [on a commit](${payload.comment.html_url}) in [\`${repo.name}\`](https://github.com/${
-					repo.url.replace("https://api.github.com/repos/", "")
+					repo.url.replace('https://api.github.com/repos/', '')
 				})`
-				: "Commented on a commit in a private repository";
+				: 'Commented on a commit in a private repository';
 			break;
 	}
 

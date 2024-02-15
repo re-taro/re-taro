@@ -18,10 +18,8 @@ export default {
     wakatimeTimeframe: 'all_time',
   },
   content: {
-    title: `Hi there👋`,
-    description: `I'm a full-stack software developer based out of Japan. I like building stuff for the web.
-
-Need more information? - [re-taro.dev](https://re-taro.dev).
+    title: `Hi there`,
+    description: `だれかやなにかを愛する事が、きっと世界を動かすクレイジーな原動力. 「Crazy for You」
 `
   },
   languagesIgnore: [

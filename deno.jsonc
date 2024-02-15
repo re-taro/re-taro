@@ -23,7 +23,8 @@
 		"deno.jsonc": "deno task setup-hooks"
 	},
 	"imports": {
-		"std/datetime": "https://deno.land/std@0.208.0/datetime/mod.ts",
-		"std/dotenv": "https://deno.land/std@0.208.0/dotenv/mod.ts"
+		"std/datetime": "https://deno.land/std@0.216.0/datetime/mod.ts",
+		"std/encoding/base64": "https://deno.land/std@0.216.0/encoding/base64.ts",
+		"std/dotenv": "https://deno.land/std@0.216.0/dotenv/mod.ts"
 	}
 }
