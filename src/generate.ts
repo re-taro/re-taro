@@ -46,10 +46,8 @@ export default class Generate {
 		this.wakatimeStats = fetchedData[1];
 
 		this.placeholders = new Map([
-			['user_activity', this.parseUserActivity],
 			['languages_graph', this.parseLanguagesGraph],
 			['music_activity', this.parseMusicActivity],
-			['updated_at', this.updatedMessage],
 		]);
 	}
 
@@ -229,7 +227,7 @@ export default class Generate {
 			dateStyle: 'short',
 			timeStyle: 'short',
 			hour12: false,
-			timeZone: 'Japan/Tokyo',
+			timeZone: 'Asia/Tokyo',
 		});
 
 		return `_Updated ${localeString}_`;
