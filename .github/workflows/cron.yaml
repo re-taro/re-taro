@@ -22,3 +22,6 @@ jobs:
       - name: Commit changes
         continue-on-error: true
         run: make persist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
