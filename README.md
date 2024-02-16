@@ -1,26 +1,29 @@
 <!-- deno-fmt-ignore-file -->
-## Hi there👋
+## Hi there
 
-I'm a full-stack software developer based out of Japan. I like building stuff for the web.
-
-Need more information? - [re-taro.dev](https://re-taro.dev).
+だれかやなにかを愛する事が、きっと世界を動かすクレイジーな原動力. 「Crazy for You」
 
 
 
-## My top languages
+## Top langs
 
 ```
-TypeScript          [====================    ] 84% (6h 39m)
-Haskell             [==                      ] 9% (0h 43m)
-Docker              [=                       ] 4% (0h 21m)
-Bash                [                        ] 1% (0h 6m)
-HTML                [                        ] 1% (0h 3m)
-CSS                 [                        ] 0% (0h 2m)
-Git Config          [                        ] 0% (0h 0m)
+TypeScript          [================        ] 68% (788h 46m)
+Rust                [====                    ] 17% (200h 35m)
+JavaScript          [=                       ] 5% (55h 15m)
+C++                 [=                       ] 3% (29h 49m)
+SCSS                [                        ] 2% (25h 57m)
+HTML                [                        ] 1% (16h 6m)
+TOML                [                        ] 1% (13h 28m)
+Docker              [                        ] 1% (7h 42m)
+Haskell             [                        ] 1% (7h 15m)
+Bash                [                        ] 1% (6h 21m)
+XML                 [                        ] 0% (4h 43m)
+Git Config          [                        ] 0% (4h 29m)
 ```
 
 
-## What I'm listening to
+## Now playing
 
 
 <a href="https://github.com/kiosion/toru">
@@ -30,7 +33,3 @@ Git Config          [                        ] 0% (0h 0m)
     <img alt="Last.fm Activity" src="https://toru.kio.dev/api/v1/re-taro?blur&border_width=0&border_radius=26" height="115" />
   </picture>
 </a>
-
-<br />
-
-_Updated 2024-02-15, 14:03_

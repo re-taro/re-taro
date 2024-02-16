@@ -9,6 +9,9 @@
     "https://deno.land/std@0.216.0/datetime/is_leap.ts": "8c22857127daad38593124408382cd09b7f8f19d2b33b44b7d04e6a176d621e0",
     "https://deno.land/std@0.216.0/datetime/mod.ts": "e191e5498662322024f21e29875cb4d6c5a9bf55e54d571b144c17678b069044",
     "https://deno.land/std@0.216.0/datetime/parse.ts": "bb248bbcb3cd54bcaf504a1ee670fc4695e429d9019c06af954bbe2bcb8f1d02",
-    "https://deno.land/std@0.216.0/datetime/week_of_year.ts": "efbafeff83418e049931d1668669396025020a73094af6291129761d68aa6a73"
+    "https://deno.land/std@0.216.0/datetime/week_of_year.ts": "efbafeff83418e049931d1668669396025020a73094af6291129761d68aa6a73",
+    "https://deno.land/std@0.216.0/dotenv/mod.ts": "0180eaeedaaf88647318811cdaa418cc64dc51fb08354f91f5f480d0a1309f7d",
+    "https://deno.land/std@0.216.0/dotenv/parse.ts": "a49ed243bd62ec26f38614042cda4e5e3a47b18337c93b0f9f8556a5c918884b",
+    "https://deno.land/std@0.216.0/dotenv/stringify.ts": "0047ad7068289735d08964046aea267a750c141b494ca0e38831b89be6c020c2"
   }
 }
