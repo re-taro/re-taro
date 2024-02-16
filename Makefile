@@ -1,3 +1,5 @@
+include .env
+
 .PHONY: persist
 generate: SHELL := /bin/bash
 generate:
