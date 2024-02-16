@@ -1,6 +1,5 @@
 import config from './config.ts';
 export { parse as parseDateTime } from 'std/datetime';
-import { encodeBase64 as encode } from 'std/encoding/base64';
 import type {
 	GithubRepository,
 	UserActivity,
@@ -89,7 +88,7 @@ export const fetchWakatimeStats = async (token: string) => {
 		{
 			init: {
 				headers: {
-					'Authorization': `Bearer ${encode(token)}`,
+					'Authorization': `Basic ${token}`,
 				},
 			},
 		},
