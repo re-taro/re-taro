@@ -1,9 +1,7 @@
-include .env
-
 .PHONY: persist
 generate: SHELL := /bin/bash
 generate:
-	deno run --allow-read --allow-write --allow-net --allow-env --unstable ./src/index.ts
+	deno run --allow-read --allow-write --allow-net --allow-env ./src/index.ts
 
 .PHONY: format
 format: SHELL := /bin/bash
@@ -17,7 +15,7 @@ format-fix:
 .PHONY: lint
 lint: SHELL := /bin/bash
 lint:
-	deno lint --unstable ./src/
+	deno lint ./src/
 
 .PHONY: persist
 persist: SHELL := /bin/bash

@@ -29,6 +29,9 @@ export default class Generate {
 		if (!(this.env.GITHUB_TOKEN || Deno.env.get('GITHUB_TOKEN'))) {
 			throw new Error('GITHUB_TOKEN not set in .env');
 		}
+		if (!(this.env.WAKATIME_API_KEY || Deno.env.get('WAKATIME_API_KEY'))) {
+			throw new Error('WAKATIME_API_KEY not set in .env');
+		}
 
 		const GITHUB_TOKEN = Deno.env.get('GITHUB_TOKEN') || this.env.GITHUB_TOKEN;
 		const WAKATIME_API_KEY = Deno.env.get('WAKATIME_API_KEY') ||
