@@ -10,7 +10,7 @@
 ```
 TypeScript          [=================       ] 70% (921h 49m)
 Rust                [====                    ] 16% (211h 22m)
-JavaScript          [=                       ] 5% (62h 33m)
+JavaScript          [=                       ] 5% (62h 37m)
 C++                 [                        ] 2% (29h 51m)
 SCSS                [                        ] 2% (25h 57m)
 HTML                [                        ] 1% (17h 44m)
