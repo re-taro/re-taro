@@ -8,7 +8,7 @@
 ## Top langs
 
 ```
-TypeScript          [=================       ] 69% (982h 8m)
+TypeScript          [=================       ] 69% (983h 7m)
 Rust                [====                    ] 17% (240h 51m)
 JavaScript          [=                       ] 6% (83h 3m)
 C++                 [                        ] 2% (29h 56m)
