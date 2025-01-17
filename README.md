@@ -8,14 +8,14 @@
 ## Top langs
 
 ```
-TypeScript          [=================       ] 69% (1053h 57m)
+TypeScript          [=================       ] 69% (1055h 31m)
 Rust                [====                    ] 16% (251h 55m)
 JavaScript          [=                       ] 6% (91h 22m)
 C++                 [                        ] 2% (29h 56m)
 SCSS                [                        ] 2% (25h 57m)
 TOML                [                        ] 1% (18h 55m)
 HTML                [                        ] 1% (18h 0m)
-TeX                 [                        ] 1% (15h 39m)
+TeX                 [                        ] 1% (15h 55m)
 Docker              [                        ] 1% (8h 42m)
 Haskell             [                        ] 1% (8h 5m)
 Bash                [                        ] 0% (7h 11m)
