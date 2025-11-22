@@ -9,11 +9,11 @@
 
 ```
 TypeScript          [==================      ] 75% (1608h 28m)
-Rust                [===                     ] 12% (262h 20m)
+Rust                [===                     ] 12% (262h 23m)
 JavaScript          [=                       ] 5% (115h 6m)
 C++                 [                        ] 1% (29h 56m)
 SCSS                [                        ] 1% (25h 57m)
-TOML                [                        ] 1% (22h 37m)
+TOML                [                        ] 1% (22h 42m)
 Terraform           [                        ] 1% (20h 33m)
 HTML                [                        ] 1% (18h 15m)
 TeX                 [                        ] 1% (16h 28m)
