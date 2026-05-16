@@ -10,7 +10,7 @@
 ```
 TypeScript          [==================      ] 75% (1760h 30m)
 Rust                [===                     ] 11% (267h 7m)
-JavaScript          [=                       ] 6% (139h 4m)
+JavaScript          [=                       ] 6% (139h 5m)
 C++                 [                        ] 1% (29h 56m)
 SCSS                [                        ] 1% (25h 57m)
 TOML                [                        ] 1% (24h 49m)
@@ -19,7 +19,7 @@ HTML                [                        ] 1% (18h 32m)
 TeX                 [                        ] 1% (16h 32m)
 Docker              [                        ] 1% (15h 48m)
 TSConfig            [                        ] 1% (12h 20m)
-Astro               [                        ] 0% (8h 58m)
+Bash                [                        ] 0% (9h 2m)
 ```
 
 
