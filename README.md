@@ -8,17 +8,18 @@
 ## Top langs
 
 ```
-TypeScript          [========================] 98% (56h 15m)
-Java                [                        ] 1% (0h 32m)
-XML                 [                        ] 1% (0h 18m)
-Groovy              [                        ] 0% (0h 13m)
-Git Config          [                        ] 0% (0h 10m)
-JavaScript          [                        ] 0% (0h 2m)
-Bash                [                        ] 0% (0h 0m)
-Objective-C         [                        ] 0% (0h 0m)
-Properties          [                        ] 0% (0h 0m)
-Python              [                        ] 0% (0h 0m)
-Cocoa               [                        ] 0% (0h 0m)
+TypeScript          [==================      ] 75% (1778h 5m)
+Rust                [===                     ] 11% (267h 11m)
+JavaScript          [=                       ] 6% (140h 19m)
+C++                 [                        ] 1% (29h 56m)
+SCSS                [                        ] 1% (25h 57m)
+TOML                [                        ] 1% (25h 1m)
+Terraform           [                        ] 1% (22h 24m)
+HTML                [                        ] 1% (18h 32m)
+TeX                 [                        ] 1% (16h 32m)
+Docker              [                        ] 1% (15h 54m)
+TSConfig            [                        ] 1% (12h 25m)
+Bash                [                        ] 0% (9h 16m)
 ```
 
 
