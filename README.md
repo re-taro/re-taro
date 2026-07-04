@@ -18,7 +18,7 @@ Terraform           [                        ] 1% (22h 46m)
 HTML                [                        ] 1% (18h 36m)
 TeX                 [                        ] 1% (16h 32m)
 Docker              [                        ] 1% (16h 0m)
-TSConfig            [                        ] 1% (12h 41m)
+TSConfig            [                        ] 1% (12h 42m)
 Bash                [                        ] 0% (10h 4m)
 ```
 
